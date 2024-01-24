@@ -2,12 +2,15 @@ ROS package used to publish a tf/Imu message acquired from the (serial) OpenIMU3
 This version was tested with a ROS noetic distribution, using an RS232 to USB wire, thus, using serial communication.
 
 ## Requirements
-The package relies on the ubuntu [_libserial_](https://github.com/crayzeewulf/libserial) package, that can be acquired via apt:
+The package relies on the ubuntu [_libserial 1.0_](https://github.com/crayzeewulf/libserial) package, that can be acquired via apt:
 ```bash
 sudo apt install libserial-dev
 ```
-or manually build using CMake following the [developer instructions](https://github.com/crayzeewulf/libserial?tab=readme-ov-file#building-using-cmake).
-The project was built using the [catkin tools](https://catkin-tools.readthedocs.io/en/latest/index.html) toolchain. 
+for older ubuntu versions it's recommended to manually build using CMake following the [developer instructions](https://github.com/crayzeewulf/libserial?tab=readme-ov-file#building-using-cmake) and run the 
+```bash
+sudo ldconfig
+```
+before building the package (see (#159)[https://github.com/crayzeewulf/libserial/issues/159]. The project was built using the [catkin tools](https://catkin-tools.readthedocs.io/en/latest/index.html) toolchain. 
 
 ## Usage
 It's recommended to clone the repo into your local git folder
