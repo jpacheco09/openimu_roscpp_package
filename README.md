@@ -49,3 +49,4 @@ and then plot it using `rqt_plot` or simply print the attitude topic in bash usi
 - [ ] Fix `Rviz` topic
 - [ ] Add parameter to launch `Rviz` as an option.
 - [ ] Fix linting files symlink
+- [ ] Add debug build option to provide auxiliar serial readings prints.
