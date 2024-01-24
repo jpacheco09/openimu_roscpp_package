@@ -1,7 +1,7 @@
 ROS package used to publish a tf/Imu message acquired from the (serial) OpenIMU335RI VG_AHRS Data Output Message Packet.
 This version was tested with a ROS noetic distribution, using an RS232 to USB wire, thus, using serial communication.
 
-** Requirements
+## Requirements
 The package relies on the ubuntu [_libserial_](https://github.com/crayzeewulf/libserial) package, that can be acquired via apt:
 ```bash
 sudo apt install libserial-dev
@@ -9,7 +9,7 @@ sudo apt install libserial-dev
 or manually build using CMake following the [developer instructions](https://github.com/crayzeewulf/libserial?tab=readme-ov-file#building-using-cmake).
 The project was built using the [catkin tools](https://catkin-tools.readthedocs.io/en/latest/index.html) toolchain. 
 
-** Usage
+## Usage
 It's recommended to clone the repo into your local git folder
 ```bash
 git clone git@github.com:jpacheco09/openimu_roscpp_package.git
@@ -33,7 +33,7 @@ roslaunch openimu_roscpp_package openimu_attitude_publisher.launch
 ```
 a Rviz window will open. For some reason, the Rviz Imu visualization is not enabled by default. 
 
-Bonus track:
+### Bonus track:
 The node will print the RPY attitude in the command line, however, the Imu message contains only quaternion information, nonetheless one can use the ROS `topic_tools` to extract the attitude data
 as a separate topic
 ```bash
@@ -41,7 +41,7 @@ rosrun topic_tools transform /open_imu/data.orientation /euler geometry_msgs/Vec
 ```
 and then plot it using `rqt_plot` or simply print the attitude topic in bash using `rostopic echo /euler`
 
-** TODO:
+## TODO:
 - [ ] Wrap the OpenIMU reading as a separate class:
     - [ ] add support for ping message
     - [ ] add support for sensor configuration 
