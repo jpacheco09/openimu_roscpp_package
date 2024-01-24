@@ -47,4 +47,5 @@ and then plot it using `rqt_plot` or simply print the attitude topic in bash usi
     - [ ] add support for sensor configuration 
 - [ ] Migrate from `libserial` to standard `serial`
 - [ ] Fix `Rviz` topic
-- [ ] Add parameter to launch `Rviz` as an option. 
+- [ ] Add parameter to launch `Rviz` as an option.
+- [ ] Fix linting files symlink
