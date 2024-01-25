@@ -66,6 +66,7 @@ int main(int argc, char** argv)
     return EXIT_FAILURE;
   }
 
+        serial_stream.FlushInputBuffer();
   // openimu a2 package definitions
   const uint8_t buffer_size = 55;
   char rx_buffer[buffer_size];
@@ -108,7 +109,7 @@ int main(int argc, char** argv)
     {                                     // read package
       serial_stream.read(rx_buffer, buffer_size);
       unpackU4<uint32_t>(&buffer_idx, &rx_buffer[buffer_idx], packet_header);
-      // ROS_INFO("H: %d \t 0x%X", packet_header, packet_header);
+      //ROS_INFO("H: %d \t 0x%X", packet_header, packet_header);
       // header and pack type are sent in little endian fashion, however, attitude is sent in big endian, hence, the
       // below if should be read as 0x55556132 according to the openimu datasheet
       if (packet_header == 0x32615555)  // fetch openIMU a2 message as big endian
@@ -130,7 +131,7 @@ int main(int argc, char** argv)
         for (float& ptr : linear_accel)
           unpackU4<float>(&buffer_idx, &rx_buffer[buffer_idx], ptr);
         // debug print to show attitude info
-//        ROS_INFO("R: %f | P: %f | H: %f ", attitude_data[0], attitude_data[1], attitude_data[2]);
+       // ROS_INFO("R: %f | P: %f | H: %f ", attitude_data[0], attitude_data[1], attitude_data[2]);
         openimu_attitude.setRPY(attitude_data[0], attitude_data[1], attitude_data[2]);
         openimu_attitude.normalize();
         time_stamp.fromSec(static_cast<double>(time_ms * 1e-3));
@@ -143,11 +144,10 @@ int main(int argc, char** argv)
         openimu_data.linear_acceleration.z = linear_accel[2];
         // reset buffer_idx
         buffer_idx = 0;
-        serial_stream.FlushInputBuffer();
         imu_pub.publish(openimu_data);
-
+	
         // tf broadcast
-
+	serial_stream.FlushInputBuffer();
         transform.setRotation(open_imu_attitude_quaternion);
         tf_br.sendTransform(tf::StampedTransform(transform, time_stamp, tf_parent_frame_id, tf_frame_id));
       }
@@ -155,6 +155,7 @@ int main(int argc, char** argv)
     ros::spinOnce();
     loop_rate.sleep();
   }
+  serial_stream.FlushInputBuffer();
   serial_stream.Close();
   return 0;
 }
