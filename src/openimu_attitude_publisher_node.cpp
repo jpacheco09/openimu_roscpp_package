@@ -130,7 +130,7 @@ int main(int argc, char** argv)
         for (float& ptr : linear_accel)
           unpackU4<float>(&buffer_idx, &rx_buffer[buffer_idx], ptr);
         // debug print to show attitude info
-        ROS_INFO("R: %f | P: %f | H: %f ", attitude_data[0], attitude_data[1], attitude_data[2]);
+//        ROS_INFO("R: %f | P: %f | H: %f ", attitude_data[0], attitude_data[1], attitude_data[2]);
         openimu_attitude.setRPY(attitude_data[0], attitude_data[1], attitude_data[2]);
         openimu_attitude.normalize();
         time_stamp.fromSec(static_cast<double>(time_ms * 1e-3));
