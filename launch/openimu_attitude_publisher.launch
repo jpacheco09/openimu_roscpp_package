@@ -1,6 +1,6 @@
 <launch>
     <node pkg="openimu_roscpp_package"
-        type="openimu_attitude_publisher_node"
+        type="openimu_roscpp_package_node"
         name="openimu_attitude_publisher" output="screen" />
 
 <!--    <node pkg="rviz" type="rviz" name="rviz"
