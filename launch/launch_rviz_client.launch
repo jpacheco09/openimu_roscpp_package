@@ -1,3 +1,0 @@
-<node pkg="rviz" type="rviz" name="rviz"
-        args="-d $(find openimu_roscpp_package)/rviz/demo.rviz"
-        required="true" />
